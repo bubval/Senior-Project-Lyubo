@@ -1,0 +1,281 @@
+﻿@model IEnumerable<Phone_Forecast.Models.DbContexts.Hardware>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InternalStorageSpace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasMemoryCardReader)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProcessorCoreCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProcessorCoreSpeed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RAM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasGPU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasHeadphoneOutput)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Has2g)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Has3g)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Has4g)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Has5g)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasBluetooth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasGps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasWifi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasRearCamera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasFrontCamera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FrontCameraMegapixel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RearCameraMegapixel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaximumLensAperture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RearCameraCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CanRecordVideo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxFramerateMaxResolution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxFramerateMinResolution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatteryCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasExchangableBattery)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Depth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasWirelessCharging)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WirelessStandard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasDualSim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SimCard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasFastCharging)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsWaterResistant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OriginalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSelected)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InternalStorageSpace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasMemoryCardReader)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProcessorCoreCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProcessorCoreSpeed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RAM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasGPU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasHeadphoneOutput)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Has2g)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Has3g)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Has4g)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Has5g)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasBluetooth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasGps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasWifi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasRearCamera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasFrontCamera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrontCameraMegapixel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RearCameraMegapixel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaximumLensAperture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RearCameraCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CanRecordVideo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxFramerateMaxResolution)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxFramerateMinResolution)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatteryCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasExchangableBattery)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Depth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasWirelessCharging)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WirelessStandard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasDualSim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SimCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasFastCharging)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsWaterResistant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSelected)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ConfigId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ConfigId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ConfigId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

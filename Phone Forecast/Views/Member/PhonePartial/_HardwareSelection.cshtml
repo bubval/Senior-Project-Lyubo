@@ -1,0 +1,62 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneForecast
+@using Newtonsoft.Json;
+@using Phone_Forecast.Utilities
+
+<div class="col-8 mx-auto">
+    <form asp-action="ChangeForecastMonths" id="myform">
+        <div class="form-group text-center">
+            <input type="hidden" name="selectedItems" value="@JsonConvert.SerializeObject(Model.SelectedIds)" />
+
+            <div class="d-flex justify-content-center my-4">
+                <span class="font-weight-bold mr-2 mt-1">1</span>
+                <input asp-for="FutureForecastMonths" name="forecastMonths" type="range" class="custom-range" onchange="this.form.submit()" min="1" max="12" step="1" />
+                <span class="font-weight-bold mr-2 mt-1">12</span>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <form method="post">
+        <table class="table table-borderless table-hover table-striped table-sm mb-0">
+            <tbody>
+                @for (var i = 0; i < Model.AllHardware.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <input type="hidden" asp-for="AllHardware[i].ConfigId" />
+                        </td>
+                        <td>
+                            <a asp-controller="Member" asp-action="Info" asp-route-id="@Model.AllHardware[i].ConfigId">@Model.AllHardware[i].PhoneModel.GetDisplayName()</a>
+                        </td>
+                        <td>
+                            @if (Model.SelectedIds.Contains(Model.AllHardware[i].ConfigId))
+                            {
+                                <text>
+                                    <a asp-action="RemoveFromChart"
+                                       asp-route-selectedItems="@JsonConvert.SerializeObject(Model.SelectedIds)"
+                                       asp-route-currentItem="@JsonConvert.SerializeObject(Model.AllHardware[i].ConfigId)"
+                                       asp-route-forecastMonths="@JsonConvert.SerializeObject(Model.FutureForecastMonths)">
+                                        Deselect
+                                    </a>
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <a asp-action="AddToChart"
+                                       asp-route-selectedItems="@JsonConvert.SerializeObject(Model.SelectedIds)"
+                                       asp-route-currentItem="@JsonConvert.SerializeObject(Model.AllHardware[i].ConfigId)"
+                                       asp-route-forecastMonths="@JsonConvert.SerializeObject(Model.FutureForecastMonths)">
+                                        Select
+                                    </a>
+                                </text>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+</div>

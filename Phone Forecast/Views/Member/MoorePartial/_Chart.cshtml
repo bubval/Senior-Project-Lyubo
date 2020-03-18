@@ -1,0 +1,71 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.Moore
+@{
+    @using Phone_Forecast.Models.Enums;
+    @using Phone_Forecast.Models.PhoneForecastView
+
+    var tuple = Model.Charts;
+    ChartItem hardwareChart = tuple.Item2;
+    ChartItem mooreChart = tuple.Item3;
+}
+
+<div class="box-body">
+    <div class="chart-container">
+        <canvas id="myChart" style="width:100%; height:400px"></canvas>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var originalLineDraw = Chart.controllers.line.prototype.draw;
+    Chart.helpers.extend(Chart.controllers.line.prototype, {
+        draw: function () {
+            originalLineDraw.apply(this, arguments);
+            var chart = this.chart;
+            var ctx = chart.chart.ctx;
+            var index = chart.config.data.lineAtIndex;
+            if (index) {
+                var xaxis = chart.scales['x-axis-0'];
+                var yaxis = chart.scales['y-axis-0'];
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
+                ctx.strokeStyle = '#ff0000';
+                ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+    });
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+        data: {
+            labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(hardwareChart.Data.Select(x => x.Date.Month.ToString() + "/" + x.Date.Year.ToString()).ToList())),
+            datasets: [{
+                label: "@hardwareChart.Label",
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                fill: @(hardwareChart.Fill.ToString().ToLower()),
+                borderWidth: @(hardwareChart.BorderWidth),
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(hardwareChart.Data.Select(x => x.Value).ToList()))
+            }, {
+                label: "@mooreChart.Label",
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                fill: @(mooreChart.Fill.ToString().ToLower()),
+                borderWidth: @(mooreChart.BorderWidth),
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(mooreChart.Data.Select(x => x.Value).ToList()))
+            }],
+            lineAtIndex: @(hardwareChart.Data.Count - Model.FutureForecastMonths - 1)
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            stacked: false,
+            hoverMode: 'index',
+        }
+    });
+
+</script>

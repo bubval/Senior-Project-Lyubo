@@ -1,0 +1,13 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneForecast
+
+
+@if (Model.MetaInfo.Count > 0 && Model.MetaInfo != null)
+{
+    @foreach (var metainfo in Model.MetaInfo)
+    {
+        <text>
+            <p>@metainfo.PhoneName <br /> HIGH: @metainfo.MaxDate - @metainfo.MaxPrice <br /> LOW: @metainfo.MinDate - @metainfo.MinPrice</p>
+        </text>
+    }
+}
+

@@ -1,0 +1,27 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.Moore
+@using Newtonsoft.Json;
+@using Phone_Forecast.Utilities
+@using Phone_Forecast.Models.Enums
+
+<div class="col-8 mx-auto">
+    <form asp-action="ChangeMooreForecast" id="myform">
+        <div class="form-group text-center">
+            <input type="hidden" name="component" value="@JsonConvert.SerializeObject(Model.Charts.Item1)" />
+
+            <div class="d-flex justify-content-center my-4">
+                <span class="font-weight-bold mr-2 mt-1">1</span>
+                <input asp-for="FutureForecastMonths" name="months" type="range" class="custom-range" onchange="this.form.submit()" min="1" max="12" step="1" />
+                <span class="font-weight-bold mr-2 mt-1">12</span>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<form method="post">
+    <input type="hidden" name="months" value="@JsonConvert.SerializeObject(Model.FutureForecastMonths)" />
+    <div class="row">
+        <select asp-for="Charts.Item1" name="component" asp-route-component="@JsonConvert.SerializeObject(Model.Charts.Item1)" asp-items="Html.GetEnumSelectList<Component>()" onchange="this.form.submit()" class="form-control"></select>
+    </div>
+</form>
+

@@ -1,0 +1,53 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.Moore
+@using Phone_Forecast.Models.Enums
+@{
+    ViewData["Title"] = "Moore";
+
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+@{
+    await Html.RenderPartialAsync("MoorePartial/_Select", Model);
+
+    if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.CPUSpeed)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_CPUSpeed", Model);
+    }
+    else if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.InternalStorageSpace)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_InternalStorage", Model);
+    }
+    else if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.RAM)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_RAM", Model);
+    }
+    else if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.FrontCameraMegapixel)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_FrontCameraMegapixel", Model);
+    }
+    else if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.RearCameraMegapixel)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_RearCameraMegapixel", Model);
+    }
+    else if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.MaxFramerateMaxResolution)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_MaxFramerateMaxResolution", Model);
+    }
+    else if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.MaxFramerateMinResolution)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_MaxFramerateMinResolution", Model);
+    }
+    else if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.BatteryCapacity)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_BatteryCapacity", Model);
+    }
+    else if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.Volume)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_Volume", Model);
+    }
+    else if(Model.Charts.Item1 == Phone_Forecast.Models.Enums.Component.Price)
+    {
+        await Html.RenderPartialAsync("MoorePartial/_Price", Model);
+    }
+}
+

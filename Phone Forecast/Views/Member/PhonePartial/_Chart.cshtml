@@ -1,0 +1,70 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneForecast;
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<div class="box-body">
+    <div class="chart-container">
+        <canvas id="myChart" style="width:100%; height:400px"></canvas>
+    </div>
+</div>
+
+<script type="text/javascript">
+    @if(Model.Charts.Count > 0)
+    {
+    <text>
+    var originalLineDraw = Chart.controllers.line.prototype.draw;
+    Chart.helpers.extend(Chart.controllers.line.prototype, {
+        draw: function () {
+            originalLineDraw.apply(this, arguments);
+            var chart = this.chart;
+            var ctx = chart.chart.ctx;
+            var index = chart.config.data.lineAtIndex;
+            if (index) {
+                var xaxis = chart.scales['x-axis-0'];
+                var yaxis = chart.scales['y-axis-0'];
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
+                ctx.strokeStyle = '#ff0000';
+                ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+    });
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Charts[0].Data.Select(x => x.Date.Month.ToString() + "/" + x.Date.Year.ToString()).ToList())),
+            datasets: [
+                @for(int i = 0; i < Model.Charts.Count; i ++)
+                {
+                <text>
+                {
+                    label: "@Model.Charts[i].Label",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    fill: @(Model.Charts[i].Fill.ToString().ToLower()),
+                    borderWidth: @(Model.Charts[i].BorderWidth),
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Charts[i].Data.Select(x => x.Value).ToList()))
+                },
+                </text>
+            }],
+            lineAtIndex: @(Model.Charts[0].Data.Count - Model.FutureForecastMonths - 1)
+        },
+        // Configuration options go here
+        options: {
+            maintainAspectRatio: true,
+            responsive: true,
+            stacked: false,
+            hoverMode: 'index',
+        }
+    });
+    </text>
+    }
+</script>

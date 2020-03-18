@@ -1,0 +1,11 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneForecast
+
+@foreach (string error in Model.Errors)
+{
+    <text>
+        <div class="alert">
+            <span class="closebtn">&times;</span>
+            <strong>Error!</strong> @error
+        </div>
+    </text>
+}

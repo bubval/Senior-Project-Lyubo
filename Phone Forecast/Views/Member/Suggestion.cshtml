@@ -1,0 +1,9 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneSuggestion
+
+@{
+    ViewData["Title"] = "Suggestion";
+
+    await Html.RenderPartialAsync("SuggestionPartial/_HardwareSelection", Model);
+    await Html.RenderPartialAsync("SuggestionPartial/_Chart", Model);
+    await Html.RenderPartialAsync("SuggestionPartial/_SelectedPhoneList", Model);
+}

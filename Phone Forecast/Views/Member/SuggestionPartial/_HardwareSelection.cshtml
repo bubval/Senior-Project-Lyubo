@@ -1,0 +1,71 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneSuggestion;
+
+<div class="col-8 mx-auto ">
+    <form asp-action="InputSpecs" id="myform">
+        <div class="form-group text-center ">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input name="storage" placeholder="Storage" type="number" class="form-control" />
+                    <br />
+                    <input name="cpuCoreCount" placeholder="CPU Core Count" type="number" class="form-control" />
+                    <br />
+                    <input name="cpuSpeed" placeholder="CPU Speed" type="number" step="0.01" class="form-control" />
+                    <br />
+                    <input name="ram" placeholder="RAM" type="number" class="form-control" />
+                    <br />
+                    <input name="frontCameraMgpx" placeholder="Front Camera Mgpx" type="number" class="form-control" />
+                    <br />
+                    <input name="backCameraMgpx" placeholder="Back Camera Mgpx" type="number" class="form-control" />
+                    <br />
+                    <input name="rearCameraCount" placeholder="Back Camera Count" type="number" class="form-control" />
+
+                </div>
+                <div class="form-group col-md-4 justify-content-center m-5">
+                    <div class="row">
+                        <label>Memory Card Reader</label>
+                        <input name="hasMemoryCardReader" type="checkbox" class="form-check-input" />
+                    </div>
+                    <div class="row">
+                        <label>Headphone Output</label>
+                        <input name="headphoneOutput" type="checkbox" class="form-check-input" />
+                    </div>
+                    <div class="row">
+                        <label>5G Capable</label>
+                        <input name="is5gCapable" type="checkbox" class="form-check-input" />
+                    </div>
+                    <div class="row">
+                        <label>Exchangable Battery</label>
+                        <input name="exchangableBattery" type="checkbox" class="form-check-input" />
+                    </div>
+                    <div class="row">
+                        <label>Wireless charging</label>
+                        <input name="wirelessCharging" type="checkbox" class="form-check-input" />
+                    </div>
+                    <div class="row">
+                        <label>Fast charging</label>
+                        <input name="fastCharging" type="checkbox" class="form-check-input" />
+                    </div>
+                    <div class="row">
+                        <label>Water resistance</label>
+                        <input name="waterResistance" type="checkbox" class="form-check-input" />
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <input type="submit" name="Submit" class="btn btn-outline-success rounded-pill" />
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -1,0 +1,19 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneSuggestion
+@using Phone_Forecast.Utilities
+
+@if (Model.SelectedIds.Count > 0 && Model.SelectedIds != null)
+{
+    <text>
+        <nav class="navbar navbar-light bg-light justify-content-center">
+            <form class="form-inline">
+                @foreach (var i in Model.SelectedIds)
+                {
+                    string name = Model.AllHardware.FirstOrDefault(x => x.ConfigId == i).PhoneModel.GetDisplayName();
+                    <text>
+                    <a asp-controller="Member" asp-action="Info" asp-route-id="@i" class="btn btn-light" type="button">@name</a>
+    </text>
+}
+            </form>
+        </nav>
+        </text>
+    }

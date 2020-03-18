@@ -1,0 +1,11 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneForecast
+@{
+    ViewData["Title"] = "Phone";
+
+    await Html.RenderPartialAsync("PhonePartial/_HardwareSelection", Model);
+    await Html.RenderPartialAsync("PhonePartial/_Errors", Model);
+    await Html.RenderPartialAsync("PhonePartial/_Chart", Model);
+    await Html.RenderPartialAsync("PhonePartial/_SelectedPhonesList", Model);
+    await Html.RenderPartialAsync("PhonePartial/_MetaInfo", Model);
+}
+
