@@ -4,6 +4,20 @@
     ViewData["Title"] = "Suggestion";
 
     await Html.RenderPartialAsync("SuggestionPartial/_HardwareSelection", Model);
-    await Html.RenderPartialAsync("SuggestionPartial/_Chart", Model);
-    await Html.RenderPartialAsync("SuggestionPartial/_SelectedPhoneList", Model);
+    if(Model.Charts.Count > 0)
+    {
+        await Html.RenderPartialAsync("SuggestionPartial/_Chart", Model);
+        await Html.RenderPartialAsync("SuggestionPartial/_SelectedPhoneList", Model);
+    }
+
+    if(Model.Charts.Count == 1)
+    {
+        // Display that there is no need to calculate scores
+    }
+    if(Model.Charts.Count > 1)
+    {
+        await Html.RenderPartialAsync("SuggestionPartial/_Scores", Model);
+    }
+
+
 }

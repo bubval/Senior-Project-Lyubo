@@ -1,0 +1,19 @@
+﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneSuggestion;
+
+
+
+<div class="row col-md-auto text-center">
+    @foreach (var score in Model.Scores)
+    {
+    <text>
+        <div class="col m-5">
+            <a asp-controller="Member" asp-action="Info" 
+               asp-route-id="@Model.AllHardware.Where(x => x.PhoneModel == score.Key).Select(x => x.ConfigId).FirstOrDefault()">
+            @score.Key
+            </a>
+            <span class="badge badge-success badge-pill">@score.Value</span>
+        </div>
+    </text>
+    }
+</div>
+

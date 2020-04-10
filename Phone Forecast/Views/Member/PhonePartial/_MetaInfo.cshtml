@@ -1,13 +1,37 @@
 ﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneForecast
-
-
-@if (Model.MetaInfo.Count > 0 && Model.MetaInfo != null)
-{
-    @foreach (var metainfo in Model.MetaInfo)
-    {
-        <text>
-            <p>@metainfo.PhoneName <br /> HIGH: @metainfo.MaxDate - @metainfo.MaxPrice <br /> LOW: @metainfo.MinDate - @metainfo.MinPrice</p>
-        </text>
-    }
+@{
+    var cheapest = Model.MetaInfo.Where(x => x.MinPrice == Model.MetaInfo.Min(y => y.MinPrice)).FirstOrDefault().PhoneId;
+    var expensive = Model.MetaInfo.Where(x => x.MaxPrice == Model.MetaInfo.Max(y => y.MaxPrice)).FirstOrDefault().PhoneId;
 }
+<table class="table table-hover">
+    <tbody>
+        @if (Model.MetaInfo.Count > 0 && Model.MetaInfo != null)
+        {
+            @foreach (var metainfo in Model.MetaInfo)
+            {
+            <text>
+            <tr>
+                <th>
+                    @metainfo.PhoneName 
 
+                </th>
+                <th>
+                    @metainfo.MinPrice @@ @metainfo.MinDate.Day/@metainfo.MinDate.Month/@metainfo.MinDate.Year
+                    @if (metainfo.PhoneId == cheapest)
+                    {
+                        <text><span class="badge badge-success">cheapest</span></text>
+                    }
+                </th>
+                <th>
+                    @metainfo.MaxPrice @@ @metainfo.MaxDate.Day/@metainfo.MaxDate.Month/@metainfo.MaxDate.Year
+                    @if (metainfo.PhoneId == expensive)
+                    {
+                        <text><span class="badge badge-danger">most expensive</span></text>
+                    }
+                </th>
+            </tr>
+            </text>
+            }
+        }
+    </tbody>
+</table>

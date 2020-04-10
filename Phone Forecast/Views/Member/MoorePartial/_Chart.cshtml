@@ -65,6 +65,19 @@
             responsive: true,
             stacked: false,
             hoverMode: 'index',
+            scales: {
+                xAxes: [{
+                    ticks: {autoSkip: true, stepSize: 3, max: 100, min: 2},
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display:  false
+                    }
+                }]
+            }
         }
     });
 
