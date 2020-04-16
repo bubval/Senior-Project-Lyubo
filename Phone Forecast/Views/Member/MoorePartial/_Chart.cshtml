@@ -1,4 +1,5 @@
 ﻿@model Phone_Forecast.Models.PhoneForecastView.Moore
+@using Phone_Forecast.Utilities.RGBA
 @{
     @using Phone_Forecast.Models.Enums;
     @using Phone_Forecast.Models.PhoneForecastView
@@ -45,15 +46,15 @@
             labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(hardwareChart.Data.Select(x => x.Date.Month.ToString() + "/" + x.Date.Year.ToString()).ToList())),
             datasets: [{
                 label: "@hardwareChart.Label",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: ['rgba(@(RGBAColorCollection.Collection[0].R), @(RGBAColorCollection.Collection[0].G), @(RGBAColorCollection.Collection[0].B), 0.1)'],
+                borderColor: ['rgba(@(RGBAColorCollection.Collection[0].R), @(RGBAColorCollection.Collection[0].G), @(RGBAColorCollection.Collection[0].B))'],
                 fill: @(hardwareChart.Fill.ToString().ToLower()),
                 borderWidth: @(hardwareChart.BorderWidth),
                 data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(hardwareChart.Data.Select(x => x.Value).ToList()))
             }, {
                 label: "@mooreChart.Label",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: ['rgba(@(RGBAColorCollection.Collection[1].R), @(RGBAColorCollection.Collection[1].G), @(RGBAColorCollection.Collection[1].B), 0.1)'],
+                borderColor: ['rgba(@(RGBAColorCollection.Collection[1].R), @(RGBAColorCollection.Collection[1].G), @(RGBAColorCollection.Collection[1].B))'],
                 fill: @(mooreChart.Fill.ToString().ToLower()),
                 borderWidth: @(mooreChart.BorderWidth),
                 data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(mooreChart.Data.Select(x => x.Value).ToList()))

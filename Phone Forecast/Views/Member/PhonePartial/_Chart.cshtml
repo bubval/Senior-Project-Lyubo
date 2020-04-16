@@ -1,4 +1,5 @@
 ﻿@model Phone_Forecast.Models.PhoneForecastView.PhoneForecast;
+@using Phone_Forecast.Utilities.RGBA
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
@@ -47,8 +48,8 @@
                 <text>
                 {
                     label: "@Model.Charts[i].Label",
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: ['rgba(@(RGBAColorCollection.Collection[i].R), @(RGBAColorCollection.Collection[i].G), @(RGBAColorCollection.Collection[i].B), 0.1)'],
+                    borderColor: ['rgba(@(RGBAColorCollection.Collection[i].R), @(RGBAColorCollection.Collection[i].G), @(RGBAColorCollection.Collection[i].B))'],
                     fill: @(Model.Charts[i].Fill.ToString().ToLower()),
                     borderWidth: @(Model.Charts[i].BorderWidth),
                     data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Charts[i].Data.Select(x => x.Value).ToList()))

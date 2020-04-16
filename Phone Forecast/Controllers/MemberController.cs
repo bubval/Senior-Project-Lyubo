@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Phone_Forecast.Models.DbContexts;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Phone_Forecast.Controllers
 {
+    [Authorize]
     public class MemberController : Controller
     {
         private readonly TransactionContext m_transactionContext;
@@ -72,7 +74,7 @@ namespace Phone_Forecast.Controllers
             List<ChartItem> charts = new List<ChartItem>();
             List<string> errors = new List<string>();
             List<int> selectedIds = new List<int>();
-            Dictionary<PhoneModel, double> scores = new Dictionary<PhoneModel, double>();
+            Dictionary<string, double> scores = new Dictionary<string, double>();
 
             if (ids != null)
                 selectedIds = ids;
@@ -106,16 +108,22 @@ namespace Phone_Forecast.Controllers
            int? rearCameraCount, bool? exchangableBattery, bool? wirelessCharging, bool? fastCharging, bool? waterResistance)
         {
             List<Hardware> phones = new List<Hardware>();
-            phones = await m_hardwareContext
-                           .HardwareConfigurations
-                           .Where(x => (x.HasMemoryCardReader == hasMemoryCardReader || x.HasMemoryCardReader == true) &&
-                                       (x.HasHeadphoneOutput == headphoneOutput || x.HasHeadphoneOutput == true) &&
-                                       (x.Has5g == is5gCapable || x.Has5g == true) &&
-                                       (x.HasExchangableBattery == exchangableBattery || x.HasExchangableBattery == true) &&
-                                       (x.HasWirelessCharging == wirelessCharging || x.HasWirelessCharging == true) &&
-                                       (x.HasFastCharging == fastCharging || x.HasFastCharging == true) &&
-                                       (x.IsWaterResistant == waterResistance || x.IsWaterResistant == true))
-                           .ToListAsync();
+            phones = await m_hardwareContext.HardwareConfigurations.ToListAsync();
+
+            if (hasMemoryCardReader.HasValue)
+                phones = phones.Where(x => x.HasMemoryCardReader == hasMemoryCardReader).ToList();
+            if (headphoneOutput.HasValue)
+                phones = phones.Where(x => x.HasHeadphoneOutput == headphoneOutput).ToList();
+            if (is5gCapable.HasValue)
+                phones = phones.Where(x => x.Has5g == is5gCapable).ToList();
+            if (exchangableBattery.HasValue)
+                phones = phones.Where(x => x.HasExchangableBattery == exchangableBattery).ToList();
+            if (wirelessCharging.HasValue)
+                phones = phones.Where(x => x.HasWirelessCharging == wirelessCharging).ToList();
+            if (fastCharging.HasValue)
+                phones = phones.Where(x => x.HasFastCharging == fastCharging).ToList();
+            if (waterResistance.HasValue)
+                phones = phones.Where(x => x.IsWaterResistant == waterResistance).ToList();
 
             if (storage.HasValue)
                 phones = phones.Where(x => x.InternalStorageSpace >= storage).ToList();
@@ -293,9 +301,9 @@ namespace Phone_Forecast.Controllers
             return metas;
         }
 
-        private Dictionary<PhoneModel, double> GetScores(List<int> ids)
+        private Dictionary<string, double> GetScores(List<int> ids)
         {
-            Dictionary<PhoneModel, double> dictionary = new Dictionary<PhoneModel, double>();
+            Dictionary<string, double> dictionary = new Dictionary<string, double>();
 
             // At this point, preprocessing has happened and all phones have been forecasted.
             foreach (int id in ids)
@@ -304,7 +312,7 @@ namespace Phone_Forecast.Controllers
                 PhoneModel model = current.PhoneModel;
                 List<Hardware> allOther = m_hardwareContext.HardwareConfigurations.Where(x => x.ConfigId != id).ToList();
                 double score = CalculateScore(current, allOther);
-                dictionary.Add(model, score);
+                dictionary.Add(model.GetDisplayName(), score);
             }
 
             return dictionary;
@@ -313,10 +321,35 @@ namespace Phone_Forecast.Controllers
         private double CalculateScore(Hardware current, List<Hardware> allOther)
         {
             List<double> score = new List<double>();
+            var transactionsDb = m_transactionContext.Transactions.ToList();
+            var currentTransactions = transactionsDb.Where(x => x.Phone == current.PhoneModel).ToList();
+
+            int currentPrice = 0;
+            if (currentTransactions.Count > 23)
+                currentPrice = (int)currentTransactions.Select(x => x.Price).Average();
+
 
             foreach (Hardware other in allOther)
             {
                 List<double> oneToOneScore = new List<double>();
+
+                var otherTransactions = transactionsDb.Where(x => x.Phone == other.PhoneModel).ToList();
+                var otherPrice = 0;
+                if (otherTransactions.Count > 23)
+                    otherPrice = (int)otherTransactions.Select(x => x.Price).Average();
+
+                if(currentPrice !=0 && otherPrice != 0)
+                {
+                    var difference = PercentDiff(currentPrice, otherPrice);
+                    if (difference > 0)
+                    {
+                        oneToOneScore.Add(50);
+                    }
+                    else
+                    {
+                        oneToOneScore.Add(-50);
+                    }
+                }
 
                 int mainStorage = current.InternalStorageSpace;
                 int compStorage = other.InternalStorageSpace;
@@ -350,8 +383,12 @@ namespace Phone_Forecast.Controllers
                 score.Add(oneToOneScore.Average());
             }
 
-            // Total score is the average of all one-to-one scores.
-            return score.Average();
+            var finalScore = score.Average();
+
+            if (finalScore < 0)
+                return 0;
+            else
+                return (int)score.Average();
         }
 
         private double PercentDiff(double number, double comparisonNumber)

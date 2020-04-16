@@ -1,270 +1,247 @@
 ﻿@model Phone_Forecast.Models.DbContexts.Hardware
+@using Phone_Forecast.Utilities
 
 @{
     ViewData["Title"] = "Info";
 }
 
-<h1>Info</h1>
+    <div class="container">
+        <h1>@Model.PhoneModel.GetDisplayName()</h1>
 
-<div>
-    <h4>Hardware</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneModel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneModel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InternalStorageSpace)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InternalStorageSpace)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasMemoryCardReader)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasMemoryCardReader)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cpu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cpu)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProcessorCoreCount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProcessorCoreCount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProcessorCoreSpeed)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProcessorCoreSpeed)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RAM)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RAM)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasGPU)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasGPU)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GPU)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GPU)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasHeadphoneOutput)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasHeadphoneOutput)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Has2g)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Has2g)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Has3g)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Has3g)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Has4g)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Has4g)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Has5g)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Has5g)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasBluetooth)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasBluetooth)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasGps)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasGps)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasWifi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasWifi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasRearCamera)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasRearCamera)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasFrontCamera)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasFrontCamera)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FrontCameraMegapixel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FrontCameraMegapixel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RearCameraMegapixel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RearCameraMegapixel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaximumLensAperture)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaximumLensAperture)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RearCameraCount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RearCameraCount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CanRecordVideo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CanRecordVideo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaxFramerateMaxResolution)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaxFramerateMaxResolution)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaxFramerateMinResolution)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaxFramerateMinResolution)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BatteryCapacity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BatteryCapacity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasExchangableBattery)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasExchangableBattery)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Depth)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Depth)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Height)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Height)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Width)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Width)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasWirelessCharging)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasWirelessCharging)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WirelessStandard)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WirelessStandard)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasDualSim)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasDualSim)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SimCard)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SimCard)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasFastCharging)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasFastCharging)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsWaterResistant)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsWaterResistant)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OriginalPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OriginalPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductPage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductPage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsSelected)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsSelected)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ConfigId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div class="row pb-5 pt-5">
+            <div class="col-12">
+                <h5 class="font-weight-bold">CPU (System on Chip) Information</h5>
+                <hr />
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.Cpu)
+                @Html.DisplayFor(model => model.Cpu)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.ProcessorCoreCount)
+                @Html.DisplayFor(model => model.ProcessorCoreCount)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.ProcessorCoreSpeed)
+                @Html.DisplayFor(model => model.ProcessorCoreSpeed)GHz
+            </div>
+        </div>
+
+
+
+        <div class="row pb-5 pt-5">
+            <div class="col-12">
+                <h5 class="font-weight-bold">Memory Infomration</h5>
+                <hr />
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.RAM)
+                @Html.DisplayFor(model => model.RAM)GB
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.InternalStorageSpace)
+                @Html.DisplayFor(model => model.InternalStorageSpace)GB
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasMemoryCardReader)
+                @Html.DisplayFor(model => model.HasMemoryCardReader)
+            </div>
+        </div>
+
+
+
+        <div class="row pb-5 pt-5">
+            <div class="col-12">
+                <h5 class="font-weight-bold">Graphical Processing Information</h5>
+                <hr />
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasGPU)
+                @Html.DisplayFor(model => model.HasGPU)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.GPU)
+                @Html.DisplayFor(model => model.GPU)
+            </div>
+        </div>
+
+        <div class="row pb-5 pt-5">
+            <div class="col-12">
+                <h5 class="font-weight-bold">Connectors and Communication Information</h5>
+                <hr />
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasHeadphoneOutput)
+                @Html.DisplayFor(model => model.HasHeadphoneOutput)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.Has2g)
+                @Html.DisplayFor(model => model.Has2g)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.Has3g)
+                @Html.DisplayFor(model => model.Has3g)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.Has4g)
+                @Html.DisplayFor(model => model.Has4g)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.Has5g)
+                @Html.DisplayFor(model => model.Has5g)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasBluetooth)
+                @Html.DisplayFor(model => model.HasBluetooth)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasGps)
+                @Html.DisplayFor(model => model.HasGps)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasWifi)
+                @Html.DisplayFor(model => model.HasWifi)
+            </div>
+        </div>
+
+        <div class="row pb-5 pt-5">
+            <div class="col-12">
+                <h5 class="font-weight-bold">Camera Information</h5>
+                <hr />
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasRearCamera)
+                @Html.DisplayFor(model => model.HasRearCamera)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasFrontCamera)
+                @Html.DisplayFor(model => model.HasFrontCamera)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.FrontCameraMegapixel)
+                @Html.DisplayFor(model => model.FrontCameraMegapixel) megapixels
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.RearCameraMegapixel)
+                @Html.DisplayFor(model => model.RearCameraMegapixel) megapixels
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.MaximumLensAperture)
+                @Html.DisplayFor(model => model.MaximumLensAperture)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.RearCameraCount)
+                @Html.DisplayFor(model => model.RearCameraCount)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.CanRecordVideo)
+                @Html.DisplayFor(model => model.CanRecordVideo)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.MaxFramerateMaxResolution)
+                @Html.DisplayFor(model => model.MaxFramerateMaxResolution) FPS
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.MaxFramerateMinResolution)
+                @Html.DisplayFor(model => model.MaxFramerateMinResolution) FPS
+            </div>
+        </div>
+
+
+
+        <div class="row pb-5 pt-5">
+            <div class="col-12">
+                <h5 class="font-weight-bold">Battery Information</h5>
+                <hr />
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.BatteryCapacity)
+                @Html.DisplayFor(model => model.BatteryCapacity) mAh
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasExchangableBattery)
+                @Html.DisplayFor(model => model.HasExchangableBattery)
+            </div>
+        </div>
+
+
+
+        <div class="row pb-5 pt-5">
+            <div class="col-12">
+                <h5 class="font-weight-bold">Dimension Information</h5>
+                <hr />
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.Depth)
+                @Html.DisplayFor(model => model.Depth) mm
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.Height)
+                @Html.DisplayFor(model => model.Height) mm
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.Width)
+                @Html.DisplayFor(model => model.Width) mm
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.Weight)
+                @Html.DisplayFor(model => model.Weight) g
+            </div>
+        </div>
+
+
+
+
+        <div class="row pb-5 pt-5">
+            <div class="col-12">
+                <h5 class="font-weight-bold">Misc Information</h5>
+                <hr />
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasWirelessCharging)
+                @Html.DisplayFor(model => model.HasWirelessCharging)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.WirelessStandard)
+                @Html.DisplayFor(model => model.WirelessStandard)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasDualSim)
+                @Html.DisplayFor(model => model.HasDualSim)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.SimCard)
+                @Html.DisplayFor(model => model.SimCard)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.HasFastCharging)
+                @Html.DisplayFor(model => model.HasFastCharging)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.IsWaterResistant)
+                @Html.DisplayFor(model => model.IsWaterResistant)
+            </div>
+        </div>
+
+        <div class="row pb-5 pt-5">
+            <div class="col-12">
+                <h5 class="font-weight-bold">Release</h5>
+                <hr />
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.OriginalPrice)
+                @Html.DisplayFor(model => model.OriginalPrice) EURO
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+                @Html.DisplayFor(model => model.ReleaseDate)
+            </div>
+            <div class="col-4">
+                @Html.DisplayNameFor(model => model.ProductPage)
+                @Html.DisplayFor(model => model.ProductPage)
+            </div>
+        </div>
+
+
+    </div>
+
